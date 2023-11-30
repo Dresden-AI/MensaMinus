@@ -1,10 +1,9 @@
 import 'dart:convert';
 
-import 'package:mensa_minus/utils/date_formatter.dart';
-import 'package:mensa_minus/utils/http_utils.dart';
-
 import 'model/canteen.dart';
 import 'model/meal.dart';
+import 'utils/date_formatter.dart';
+import 'utils/http_utils.dart';
 
 class Api {
   /// Retrieves all configured canteens
@@ -40,6 +39,7 @@ class Api {
         var notes = (meal["notes"] as List)
             .map((e) => e as String)
             .toList(growable: false);
+
         var prices = (meal["prices"] as Map)
             .map((key, value) => MapEntry(key as String, value as double));
 
