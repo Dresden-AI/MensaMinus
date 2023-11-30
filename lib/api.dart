@@ -14,13 +14,9 @@ class Api {
 
     return response.then((value) {
       var canteenData = jsonDecode(value) as List<dynamic>;
-      List<Canteen> canteens = [];
-
-      for (var canteen in canteenData) {
-        canteens.add(Canteen(canteen["id"], canteen["name"]));
-      }
-
-      return canteens;
+      return canteenData
+          .map((canteen) => Canteen(canteen["id"], canteen["name"]))
+          .toList();
     });
   }
 
