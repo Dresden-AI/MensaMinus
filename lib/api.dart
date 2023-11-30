@@ -7,6 +7,7 @@ import 'model/canteen.dart';
 import 'model/meal.dart';
 
 class Api {
+  /// Retrieves all configured canteens
   Future<List<Canteen>> getCanteens() async {
     var uri =
         Uri.https("api.studentenwerk-dresden.de", "openmensa/v2/canteens");
@@ -24,6 +25,7 @@ class Api {
     });
   }
 
+  /// Retrieves all meals for the provided canteen on a specific day
   Future<List<Meal>> getMeals(Canteen canteen, DateTime date) async {
     var formattedDate = DateFormatter.formatDate(date);
     var uri = Uri.https("api.studentenwerk-dresden.de",

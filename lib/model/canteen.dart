@@ -1,3 +1,4 @@
+/// Represents a canteen on the campus
 class Canteen {
   final int id;
   final String name;

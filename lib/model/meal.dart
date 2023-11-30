@@ -1,3 +1,4 @@
+/// Represents a meal from a specific canteen
 class Meal {
   final int id;
   final String name;
