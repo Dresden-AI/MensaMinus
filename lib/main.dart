@@ -1,47 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:mensa_minus/screens/home_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
-  runApp(const MensaMinusApp());
+import 'api.dart';
+import 'model/canteen.dart';
+
+Future<void> main() async {
+  var api = Api();
+  var canteens = await api.getCanteens();
+  var sharedPreferences = await SharedPreferences.getInstance();
+  if(!sharedPreferences.containsKey('selectedCanteens')){
+    sharedPreferences.setStringList('selectedCanteens', []);
+  }
+  var selectedCanteens = canteens.where((canteen) => sharedPreferences.getStringList('selectedCanteens')!.contains(canteen.name)).toList();
+  runApp(MensaMinusApp(canteens: canteens, selectedCanteens: selectedCanteens));
 }
 
 class MensaMinusApp extends StatelessWidget {
-  const MensaMinusApp({super.key});
+  final List<Canteen> canteens;
+  final List<Canteen> selectedCanteens;
+  const MensaMinusApp({super.key, required this.canteens, required this.selectedCanteens, });
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Mensa Minus',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const HomePage(title: 'Mensa Minus'),
+      home: HomePage(canteens: canteens, selectedCanteens: selectedCanteens),
     );
   }
 }
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key, required this.title});
 
-  final String title;
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: const Center(
-        child: Text(
-          'Einfach mensen gehen!',
-        ),
-      ),
-    );
-  }
-}
