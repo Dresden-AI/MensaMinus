@@ -1,13 +1,13 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mensa_minus/model/canteen.dart';
 
 class CanteenToggle extends StatefulWidget {
   final Canteen canteen;
-  final List<Canteen>
-  const CanteenToggle(selectedCanteens,{
+  final List<Canteen> selectedCanteens;
+  const CanteenToggle({
     super.key,
-    required this.canteen
+    required this.canteen,
+    required this.selectedCanteens,
   });
 
   @override
@@ -16,11 +16,11 @@ class CanteenToggle extends StatefulWidget {
 
 class _CanteenToggleState extends State<CanteenToggle> {
   List<Canteen> selectedCanteens = [];
-  bool selected = widget.selectedCantees.contains(widget.canteen.name);
+  bool selected = false;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
+    selected = widget.selectedCanteens.contains(widget.canteen);
   }
   @override
   Widget build(BuildContext context) {

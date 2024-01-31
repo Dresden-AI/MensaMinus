@@ -18,11 +18,11 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text('Mensa Minus'),
+        title: const Text('Mensa Minus'),
         actions: [
           IconButton(
-              onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ConfigPage(canteens: widget.canteens, selectedCanteens: widget.selectedCanteens))),
-              icon: const Icon(Icons.settings))
+            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ConfigPage(canteens: widget.canteens, selectedCanteens: widget.selectedCanteens))),
+            icon: const Icon(Icons.settings))
         ],
       ),
       body: const Center(
