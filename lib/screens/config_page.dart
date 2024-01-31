@@ -1,19 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:mensa_minus/screens/widgets/canteen_toggle.dart';
+import 'package:mensa_minus/utils/datatypes.dart';
 
 import '../model/canteen.dart';
 
-class ConfigPage extends StatefulWidget {
+class ConfigPage extends StatelessWidget {
   final List<Canteen> canteens;
-
-  final List<Canteen> selectedCanteens;
+  final SelectedCanteens selectedCanteens;
   const ConfigPage({super.key, required this.canteens, required this.selectedCanteens});
-
-  @override
-  State<ConfigPage> createState() => _ConfigPageState();
-}
-
-class _ConfigPageState extends State<ConfigPage> {
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +22,9 @@ class _ConfigPageState extends State<ConfigPage> {
               icon: const Icon(Icons.refresh_sharp)),
             ListView.builder(
               shrinkWrap: true,
-              itemCount: widget.canteens.length,
+              itemCount: canteens.length,
               itemBuilder: (BuildContext context, int index) {
-                return CanteenToggle(canteen: widget.canteens[index], selectedCanteens: widget.selectedCanteens);
+                return CanteenToggle(canteen: canteens[index], selectedCanteens: selectedCanteens);
               },
             )
           ],

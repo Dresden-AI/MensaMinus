@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:mensa_minus/model/canteen.dart';
 import 'package:mensa_minus/screens/config_page.dart';
+import 'package:mensa_minus/utils/datatypes.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   final List<Canteen> canteens;
-  final List<Canteen> selectedCanteens;
+  final SelectedCanteens selectedCanteens;
   const HomePage({super.key, required this.canteens, required this.selectedCanteens});
 
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,8 +16,9 @@ class _HomePageState extends State<HomePage> {
         title: const Text('Mensa Minus'),
         actions: [
           IconButton(
-            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ConfigPage(canteens: widget.canteens, selectedCanteens: widget.selectedCanteens))),
-            icon: const Icon(Icons.settings))
+            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => ConfigPage(canteens: canteens, selectedCanteens: selectedCanteens))),
+            icon: const Icon(Icons.settings)
+          )
         ],
       ),
       body: const Center(
