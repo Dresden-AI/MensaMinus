@@ -12,22 +12,18 @@ class ConfigPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: const Text('Konfiguration'),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
-        child: Column(
-          children: [
-            IconButton(
-              onPressed: () => Navigator.pop(context),
-              // TODO: Why refresh?
-              icon: const Icon(Icons.refresh_sharp)),
-            ListView.builder(
-              shrinkWrap: true,
-              itemCount: canteens.length,
-              itemBuilder: (BuildContext context, int index) {
-                return CanteenToggle(canteen: canteens[index], selectedCanteens: selectedCanteens);
-              },
-            )
-          ],
+        child: ListView.builder(
+          shrinkWrap: true,
+          itemCount: canteens.length,
+          itemBuilder: (BuildContext context, int index) {
+            return CanteenToggle(canteen: canteens[index], selectedCanteens: selectedCanteens);
+          },
         ),
       )
     );
