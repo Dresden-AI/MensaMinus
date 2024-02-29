@@ -31,14 +31,14 @@ class _CanteenToggleState extends State<CanteenToggle> {
       children: [
         Checkbox(
           value: selected,
-          onChanged: (value) {
+          onChanged: (value) async {
             if (value == true) {
               widget.selectedCanteens.add(widget.canteen);
             } else {
               widget.selectedCanteens.remove(widget.canteen);
             }
 
-            setSelectedCanteens(widget.selectedCanteens);
+            await setSelectedCanteens(widget.selectedCanteens);
 
             setState(() {
               selected = value!;

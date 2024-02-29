@@ -11,11 +11,8 @@ Future<List<Canteen>> getSelectedCanteens(List<Canteen> canteens) async {
   return canteens.where((canteen) => sharedPreferences.getStringList('selectedCanteens')!.contains(canteen.name)).toList();
 }
 
-void setSelectedCanteens(List<Canteen> selectedCanteens) {
-  SharedPreferences.getInstance().then(
-    (SharedPreferences sharedPreferences) {
-      List<String> selectedCanteensNames = selectedCanteens.map((canteen) => canteen.name).toList();
-      sharedPreferences.setStringList('selectedCanteens', selectedCanteensNames);
-    }
-  );
+Future<void> setSelectedCanteens(List<Canteen> selectedCanteens) async {
+  SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+  List<String> selectedCanteensNames = selectedCanteens.map((canteen) => canteen.name).toList();
+  await sharedPreferences.setStringList('selectedCanteens', selectedCanteensNames);
 }
