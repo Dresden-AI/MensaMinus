@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:mensa_minus/screens/widgets/canteen_toggle.dart';
-import 'package:mensa_minus/utils/datatypes.dart';
 
 import '../model/canteen.dart';
 
 class ConfigPage extends StatelessWidget {
   final List<Canteen> canteens;
-  final SelectedCanteens selectedCanteens;
+  final List<Canteen> selectedCanteens;
+
   const ConfigPage({super.key, required this.canteens, required this.selectedCanteens});
 
   @override
@@ -14,7 +14,7 @@ class ConfigPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('Konfiguration'),
+        title: const Text("Konfiguration"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(12.0),

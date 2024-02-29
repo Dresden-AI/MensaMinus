@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mensa_minus/screens/home_page.dart';
-import 'package:mensa_minus/utils/datatypes.dart';
 import 'package:mensa_minus/utils/shared_prefs.dart';
 
 import 'api.dart';
@@ -9,13 +8,13 @@ import 'model/canteen.dart';
 Future<void> main() async {
   Api api = Api();
   List<Canteen> canteens = await api.getCanteens();
-  SelectedCanteens selectedCanteens = await getSelectedCanteens(canteens);
+  List<Canteen> selectedCanteens = await getSelectedCanteens(canteens);
   runApp(MensaMinusApp(canteens: canteens, selectedCanteens: selectedCanteens));
 }
 
 class MensaMinusApp extends StatelessWidget {
   final List<Canteen> canteens;
-  final SelectedCanteens selectedCanteens;
+  final List<Canteen> selectedCanteens;
   const MensaMinusApp({super.key, required this.canteens, required this.selectedCanteens, });
 
   @override
