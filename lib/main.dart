@@ -9,6 +9,7 @@ Future<void> main() async {
   Api api = Api();
   List<Canteen> canteens = await api.getCanteens();
   List<Canteen> selectedCanteens = await getSelectedCanteens(canteens);
+
   runApp(MensaMinusApp(canteens: canteens, selectedCanteens: selectedCanteens));
 }
 
@@ -26,9 +27,7 @@ class MensaMinusApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: HomePage(canteens: canteens, selectedCanteens: selectedCanteens)
+      home: HomePage(canteens: canteens, selectedCanteens: selectedCanteens),
     );
   }
 }
-
-
