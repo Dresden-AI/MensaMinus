@@ -8,8 +8,7 @@ import 'utils/http_utils.dart';
 class Api {
   /// Retrieves all configured canteens
   Future<List<Canteen>> getCanteens() async {
-    var uri =
-        Uri.https("api.studentenwerk-dresden.de", "openmensa/v2/canteens");
+    var uri = Uri.https("api.studentenwerk-dresden.de", "openmensa/v2/canteens");
     var response = HttpUtils.getResponse(uri);
 
     return response.then((value) {
@@ -23,8 +22,7 @@ class Api {
   /// Retrieves all meals for the provided canteen on a specific day
   Future<List<Meal>> getMeals(Canteen canteen, DateTime date) async {
     var formattedDate = DateFormatter.formatDate(date);
-    var uri = Uri.https("api.studentenwerk-dresden.de",
-        "openmensa/v2/canteens/${canteen.id}/days/$formattedDate/meals");
+    var uri = Uri.https("api.studentenwerk-dresden.de", "openmensa/v2/canteens/${canteen.id}/days/$formattedDate/meals");
     var response = HttpUtils.getResponse(uri);
 
     return response.then((value) {
@@ -37,10 +35,9 @@ class Api {
             .toList(growable: false);
 
         var prices = (meal["prices"] as Map)
-            .map((key, value) => MapEntry(key as String, value as double));
+            .map((key, value) => MapEntry(key as String, value.toDouble() as double));
 
-        meals.add(Meal(meal["id"], meal["name"], meal["category"],
-            meal["image"], notes, prices));
+        meals.add(Meal(meal["id"], meal["name"], meal["category"], meal["image"], notes, prices));
       }
 
       return meals;
