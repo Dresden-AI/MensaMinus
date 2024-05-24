@@ -22,7 +22,7 @@ class _CanteenPageState extends State<CanteenPage> {
       backgroundColor: const Color.fromRGBO(240, 240, 240, 1.0),
 
       floatingActionButton: AnimatedScale(
-        scale: _showFloatingActionButton ? 1.0 : 0.1,
+        scale: _showFloatingActionButton ? 1.0 : 0.001,
         duration: const Duration(milliseconds: 300),
         child: AnimatedOpacity(
           opacity: _showFloatingActionButton ? 1.0 : 0.0,
