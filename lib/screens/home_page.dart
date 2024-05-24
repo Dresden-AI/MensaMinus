@@ -1,9 +1,7 @@
-import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:mensa_minus/screens/ai_assistant_page.dart';
 import 'package:mensa_minus/screens/canteen_page.dart';
 import 'package:mensa_minus/screens/config_page.dart';
-import 'package:mensa_minus/screens/filter_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -14,7 +12,7 @@ class HomePage extends StatefulWidget {
 
 class HomePageState extends State<HomePage> {
   static final List<Widget> pages = [
-    const CanteenPage(),
+    CanteenPage(),
     const AssistantPage(),
     const ConfigPage()
   ];
@@ -48,29 +46,6 @@ class HomePageState extends State<HomePage> {
           });
         },
       ),
-
-      floatingActionButton: _pageIndex == 0 ? OpenContainer(
-        openBuilder: (BuildContext context, VoidCallback _) => const FilterPage(),
-        closedElevation: 6.0,
-        closedShape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(65.0 / 3),
-          ),
-        ),
-        closedColor: Theme.of(context).colorScheme.secondary,
-        closedBuilder: (BuildContext context, VoidCallback openContainer) {
-          return SizedBox(
-            height: 65.0,
-            width: 65.0,
-            child: Center(
-              child: Icon(
-                Icons.filter_alt_rounded,
-                color: Theme.of(context).colorScheme.onSecondary,
-              ),
-            ),
-          );
-        },
-      ) : null,
 
       body: pages[_pageIndex]
     );

@@ -3,11 +3,13 @@ class Meal {
   final int id;
   final String name;
   final String category;
-  final String image;
+  late final String image;
   final List<String> notes;
   final Map<String, double> prices;
 
-  Meal(this.id, this.name, this.category, this.image, this.notes, this.prices);
+  Meal(this.id, this.name, this.category, String image, this.notes, this.prices) {
+    this.image = "https:$image";
+  }
 
   @override
   String toString() {
