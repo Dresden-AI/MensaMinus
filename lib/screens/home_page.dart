@@ -12,7 +12,7 @@ class HomePage extends StatefulWidget {
 
 class HomePageState extends State<HomePage> {
   static final List<Widget> pages = [
-    CanteenPage(),
+    const CanteenPage(),
     const AssistantPage(),
     const ConfigPage()
   ];

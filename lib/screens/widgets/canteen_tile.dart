@@ -30,7 +30,7 @@ class CanteenMeal extends StatelessWidget {
             itemCount: canteen.meals.length,
             itemBuilder: (context, index) {
               return Padding(
-                padding: EdgeInsets.only(bottom: 10),
+                padding: const EdgeInsets.only(bottom: 10),
                 child: MealTile(
                   meal: canteen.meals[index],
                 ),
