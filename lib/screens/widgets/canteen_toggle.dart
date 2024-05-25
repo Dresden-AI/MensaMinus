@@ -1,53 +1,52 @@
 import 'package:flutter/material.dart';
 import 'package:mensa_minus/model/canteen.dart';
+import 'package:mensa_minus/model/canteen_list.dart';
 import 'package:mensa_minus/utils/shared_prefs.dart';
+import 'package:provider/provider.dart';
 
 class CanteenToggle extends StatefulWidget {
   final Canteen canteen;
-  final List<Canteen> selectedCanteens;
 
-  const CanteenToggle({
-    super.key,
-    required this.canteen,
-    required this.selectedCanteens,
-  });
+  const CanteenToggle({super.key, required this.canteen});
 
   @override
   State<CanteenToggle> createState() => _CanteenToggleState();
 }
 
 class _CanteenToggleState extends State<CanteenToggle> {
-  bool selected = false;
-
   @override
   void initState() {
     super.initState();
-    selected = widget.selectedCanteens.contains(widget.canteen);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Checkbox(
-          value: selected,
-          onChanged: (value) async {
-            if (value == true) {
-              widget.selectedCanteens.add(widget.canteen);
-            } else {
-              widget.selectedCanteens.remove(widget.canteen);
-            }
+    return Consumer<CanteenList>(
+      builder: (context, canteenList, child) {
+        return Row(
+          children: [
+            Checkbox(
+                value: canteenList.selectedCanteens.contains(widget.canteen),
+                onChanged: (value) async {
+                  if (value == true) {
+                    canteenList.selectedCanteens.add(widget.canteen);
+                  } else {
+                    canteenList.selectedCanteens.remove(widget.canteen);
+                  }
 
-            await setSelectedCanteens(widget.selectedCanteens);
+                  await setSelectedCanteens(canteenList.selectedCanteens);
+                  if (value == true) {
+                    await canteenList.fetchMeals(widget.canteen);
+                  }
 
-            setState(() {
-              selected = value!;
-            });
-          }),
-        Text(
-          widget.canteen.name,
-        ),
-      ],
+                  setState(() {});
+                }),
+            Text(
+              widget.canteen.name,
+            ),
+          ],
+        );
+      },
     );
   }
 }
